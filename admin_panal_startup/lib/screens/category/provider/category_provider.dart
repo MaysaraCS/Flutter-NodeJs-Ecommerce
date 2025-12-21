@@ -1,5 +1,6 @@
 import 'dart:io';
-import 'dart:nativewrappers/_internal/vm/lib/developer.dart';
+import 'dart:developer';
+
 import 'package:admin/models/api_response.dart';
 import 'package:admin/utility/snack_bar_helper.dart';
 
@@ -39,7 +40,7 @@ class CategoryProvider extends ChangeNotifier {
       final FormData form =
           await createFormData(imgXFile: imgXFile, formData: formDataMap);
       final response =
-          await service.addItem(endpointUrl: '/categories', itemData: form);
+          await service.addItem(endpointUrl: 'categories', itemData: form);
       if (response.isOk) {
         ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
         if (apiResponse.success == true) {

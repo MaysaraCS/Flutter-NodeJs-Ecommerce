@@ -52,6 +52,15 @@
       ]
     },
     {
+      "name": "provider",
+      "version": "6.1.5+1",
+      "dependencies": [
+        "collection",
+        "flutter",
+        "nested"
+      ]
+    },
+    {
       "name": "get",
       "version": "4.7.3",
       "dependencies": [
@@ -231,6 +240,13 @@
       ]
     },
     {
+      "name": "nested",
+      "version": "1.0.0",
+      "dependencies": [
+        "flutter"
+      ]
+    },
+    {
       "name": "web",
       "version": "0.5.1",
       "dependencies": []
@@ -246,12 +262,49 @@
       ]
     },
     {
+      "name": "image_picker_platform_interface",
+      "version": "2.11.1",
+      "dependencies": [
+        "cross_file",
+        "flutter",
+        "http",
+        "plugin_platform_interface"
+      ]
+    },
+    {
+      "name": "image_picker_macos",
+      "version": "0.2.2+1",
+      "dependencies": [
+        "file_selector_macos",
+        "file_selector_platform_interface",
+        "flutter",
+        "image_picker_platform_interface"
+      ]
+    },
+    {
       "name": "image_picker_linux",
       "version": "0.2.2",
       "dependencies": [
         "file_selector_linux",
         "file_selector_platform_interface",
         "flutter",
+        "image_picker_platform_interface"
+      ]
+    },
+    {
+      "name": "image_picker_ios",
+      "version": "0.8.13+3",
+      "dependencies": [
+        "flutter",
+        "image_picker_platform_interface"
+      ]
+    },
+    {
+      "name": "image_picker_android",
+      "version": "0.8.13+10",
+      "dependencies": [
+        "flutter",
+        "flutter_plugin_android_lifecycle",
         "image_picker_platform_interface"
       ]
     },
@@ -276,9 +329,30 @@
       ]
     },
     {
+      "name": "vector_graphics_compiler",
+      "version": "1.1.19",
+      "dependencies": [
+        "args",
+        "meta",
+        "path",
+        "path_parsing",
+        "vector_graphics_codec",
+        "xml"
+      ]
+    },
+    {
       "name": "vector_graphics_codec",
       "version": "1.1.11+1",
       "dependencies": []
+    },
+    {
+      "name": "vector_graphics",
+      "version": "1.1.19",
+      "dependencies": [
+        "flutter",
+        "http",
+        "vector_graphics_codec"
+      ]
     },
     {
       "name": "http",
@@ -403,6 +477,30 @@
       ]
     },
     {
+      "name": "plugin_platform_interface",
+      "version": "2.1.8",
+      "dependencies": [
+        "meta"
+      ]
+    },
+    {
+      "name": "cross_file",
+      "version": "0.3.4+1",
+      "dependencies": [
+        "meta",
+        "web"
+      ]
+    },
+    {
+      "name": "file_selector_macos",
+      "version": "0.9.3+3",
+      "dependencies": [
+        "cross_file",
+        "file_selector_platform_interface",
+        "flutter"
+      ]
+    },
+    {
       "name": "file_selector_linux",
       "version": "0.9.2+1",
       "dependencies": [
@@ -410,6 +508,35 @@
         "file_selector_platform_interface",
         "flutter"
       ]
+    },
+    {
+      "name": "flutter_plugin_android_lifecycle",
+      "version": "2.0.19",
+      "dependencies": [
+        "flutter"
+      ]
+    },
+    {
+      "name": "xml",
+      "version": "6.5.0",
+      "dependencies": [
+        "collection",
+        "meta",
+        "petitparser"
+      ]
+    },
+    {
+      "name": "path_parsing",
+      "version": "1.0.1",
+      "dependencies": [
+        "meta",
+        "vector_math"
+      ]
+    },
+    {
+      "name": "args",
+      "version": "2.5.0",
+      "dependencies": []
     },
     {
       "name": "http_parser",
@@ -481,16 +608,8 @@
       "dependencies": []
     },
     {
-      "name": "cross_file",
-      "version": "0.3.4+1",
-      "dependencies": [
-        "meta",
-        "web"
-      ]
-    },
-    {
-      "name": "plugin_platform_interface",
-      "version": "2.1.8",
+      "name": "petitparser",
+      "version": "6.0.2",
       "dependencies": [
         "meta"
       ]
@@ -518,125 +637,6 @@
       "dependencies": [
         "meta",
         "path"
-      ]
-    },
-    {
-      "name": "provider",
-      "version": "6.1.5+1",
-      "dependencies": [
-        "collection",
-        "flutter",
-        "nested"
-      ]
-    },
-    {
-      "name": "nested",
-      "version": "1.0.0",
-      "dependencies": [
-        "flutter"
-      ]
-    },
-    {
-      "name": "image_picker_platform_interface",
-      "version": "2.11.1",
-      "dependencies": [
-        "cross_file",
-        "flutter",
-        "http",
-        "plugin_platform_interface"
-      ]
-    },
-    {
-      "name": "image_picker_macos",
-      "version": "0.2.2+1",
-      "dependencies": [
-        "file_selector_macos",
-        "file_selector_platform_interface",
-        "flutter",
-        "image_picker_platform_interface"
-      ]
-    },
-    {
-      "name": "file_selector_macos",
-      "version": "0.9.3+3",
-      "dependencies": [
-        "cross_file",
-        "file_selector_platform_interface",
-        "flutter"
-      ]
-    },
-    {
-      "name": "image_picker_ios",
-      "version": "0.8.13+3",
-      "dependencies": [
-        "flutter",
-        "image_picker_platform_interface"
-      ]
-    },
-    {
-      "name": "vector_graphics_compiler",
-      "version": "1.1.19",
-      "dependencies": [
-        "args",
-        "meta",
-        "path",
-        "path_parsing",
-        "vector_graphics_codec",
-        "xml"
-      ]
-    },
-    {
-      "name": "xml",
-      "version": "6.5.0",
-      "dependencies": [
-        "collection",
-        "meta",
-        "petitparser"
-      ]
-    },
-    {
-      "name": "path_parsing",
-      "version": "1.0.1",
-      "dependencies": [
-        "meta",
-        "vector_math"
-      ]
-    },
-    {
-      "name": "args",
-      "version": "2.5.0",
-      "dependencies": []
-    },
-    {
-      "name": "petitparser",
-      "version": "6.0.2",
-      "dependencies": [
-        "meta"
-      ]
-    },
-    {
-      "name": "vector_graphics",
-      "version": "1.1.19",
-      "dependencies": [
-        "flutter",
-        "http",
-        "vector_graphics_codec"
-      ]
-    },
-    {
-      "name": "image_picker_android",
-      "version": "0.8.13+10",
-      "dependencies": [
-        "flutter",
-        "flutter_plugin_android_lifecycle",
-        "image_picker_platform_interface"
-      ]
-    },
-    {
-      "name": "flutter_plugin_android_lifecycle",
-      "version": "2.0.19",
-      "dependencies": [
-        "flutter"
       ]
     }
   ],
