@@ -1,10 +1,14 @@
+import 'dart:developer';
+
+import 'package:admin/models/api_response.dart';
+import 'package:admin/utility/snack_bar_helper.dart';
+
 import '../../../models/brand.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../../../core/data/data_provider.dart';
 import '../../../models/sub_category.dart';
 import '../../../services/http_services.dart';
-
 
 class BrandProvider extends ChangeNotifier {
   HttpService service = HttpService();
@@ -15,33 +19,123 @@ class BrandProvider extends ChangeNotifier {
   SubCategory? selectedSubCategory;
   Brand? brandForUpdate;
 
-
-
-
   BrandProvider(this._dataProvider);
 
-
-
-
   //TODO: should complete addBrand
-
-
+  //?Done
+  addBrand() async {
+    try {
+      Map<String, dynamic> brand = {
+        'name': brandNameCtrl.text,
+        'subcategoryId': selectedSubCategory?.sId,
+      };
+      final response =
+          await service.addItem(endpointUrl: 'brands', itemData: brand);
+      if (response.isOk) {
+        ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
+        if (apiResponse.success == true) {
+          clearFields();
+          SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
+          log('brand added successfully');
+          _dataProvider.getAllBrands();
+        } else {
+          SnackBarHelper.showErrorSnackBar(
+              'Failed to add brand: ${apiResponse.message}');
+        }
+      } else {
+        SnackBarHelper.showErrorSnackBar(
+            'Error ${response.body?['message'] ?? response.statusText}');
+      }
+    } catch (e) {
+      print(e);
+      SnackBarHelper.showErrorSnackBar(
+          'An error occurred while adding brand: $e');
+      rethrow;
+    }
+  }
 
   //TODO: should complete updateBrand
-
+  //? Done
+  updateBrand() async {
+    try {
+      if (brandForUpdate != null) {
+        Map<String, dynamic> brand = {
+          'name': brandNameCtrl.text,
+          'subcategoryId': selectedSubCategory?.sId,
+        };
+        final response = await service.updateItem(
+            endpointUrl: 'brands',
+            itemData: brand,
+            itemId: brandForUpdate?.sId ?? '');
+        if (response.isOk) {
+          ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
+          if (apiResponse.success == true) {
+            clearFields();
+            SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
+            log('Brand updated successfully');
+            _dataProvider.getAllBrands();
+          } else {
+            SnackBarHelper.showErrorSnackBar(
+                'Failed to update brand: ${apiResponse.message}');
+          }
+        } else {
+          SnackBarHelper.showErrorSnackBar(
+              'Error ${response.body?['message'] ?? response.statusText}');
+        }
+      }
+    } catch (e) {
+      print(e);
+      SnackBarHelper.showErrorSnackBar(
+          'An error occurred while updating brand: $e');
+      rethrow;
+    }
+  }
 
   //TODO: should complete submitBrand
-
-
+  //? Done
+  submitBrand() {
+    if (brandForUpdate != null) {
+      updateBrand();
+    } else {
+      addBrand();
+    }
+  }
 
   //TODO: should complete deleteBrand
+  //? Done
+  deleteBrand(Brand brand) async {
+    try {
+      final response =
+          await service.deleteItem(endpointUrl: 'brands', itemId: brand.sId ?? '');
+      if (response.isOk) {
+        ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
+        if (apiResponse.success == true) {
+          SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
+          log('Brand deleted successfully');
+          _dataProvider.getAllBrands();
+        } else {
+          SnackBarHelper.showErrorSnackBar(
+              'Failed to delete brand: ${apiResponse.message}');
+        }
+      } else {
+        SnackBarHelper.showErrorSnackBar(
+            'Error ${response.body?['message'] ?? response.statusText}');
+      }
+    } catch (e) {
+      print(e);
+      SnackBarHelper.showErrorSnackBar(
+          'An error occurred while deleting brand: $e');
+      rethrow;
+    }
+  }
 
   //? set data for update on editing
   setDataForUpdateBrand(Brand? brand) {
     if (brand != null) {
       brandForUpdate = brand;
       brandNameCtrl.text = brand.name ?? '';
-      selectedSubCategory = _dataProvider.subCategories.firstWhereOrNull((element) => element.sId == brand.subcategoryId?.sId);
+      selectedSubCategory = _dataProvider.subCategories.firstWhereOrNull(
+          (element) => element.sId == brand.subcategoryId?.sId);
     } else {
       clearFields();
     }
@@ -54,8 +148,7 @@ class BrandProvider extends ChangeNotifier {
     brandForUpdate = null;
   }
 
-  updateUI(){
+  updateUI() {
     notifyListeners();
   }
-
 }
